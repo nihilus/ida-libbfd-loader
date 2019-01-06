@@ -1,5 +1,10 @@
+#define PACKAGE 1 /* Work-around for bfd.h */
+#define PACKAGE_VERSION 1 /* Work-around for bfd.h */
 
+#include <bfd.h>
 #include "../idaldr.h"
+
+
 
 //----------------------------------------------------------------------
 //
