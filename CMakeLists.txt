@@ -30,15 +30,16 @@ if(LIBBFD_FOUND)
   endif()
 endif()
 
-find_package(IDA)
+include_directories(${LIBBFD_INCLUDE_DIRS})
 
+find_package(IDA)
 include_directories(${IDA_INCLUDE_DIR})
-include_directories(${IDA_SDK_PATH}/ldr)
+include_directories(${IDA_SDK_DIR}/ldr)
 include_directories(${ELF_COMMON_PATH})
 
 add_definitions(${IDA_DEFINITIONS})
 add_definitions(-DUSE_STANDARD_FILE_FUNCTIONS) 
 
 add_library(ida-libbfd-loader SHARED ${SOURCES})
-target_link_libraries(ida-libbfd-loader ${IDA_LIBRARIES})
+target_link_libraries(ida-libbfd-loader ${IDA_LIBRARIES} ${LIBBFD_LIBRARIES})
 set_target_properties(ida-libbfd-loader PROPERTIES OUTPUT_NAME "ida-libbfd-loader" PREFIX "" SUFFIX "${IDA_PLUGIN_EXT}")
